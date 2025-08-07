@@ -531,22 +531,18 @@ def create_tower_keyboard(level, bombs_count):
         resize_keyboard=True
     )
 
-def create_mines_inline_keyboard(mines_count, opened_cells, current_coeff, clicks_count=0):
+def create_mines_inline_keyboard(mines_count, opened_cells, current_coeff, clicks_count=0, mines_positions=None):
     """Создает инлайн клавиатуру для игры в мины."""
     keyboard = []
-    field = create_mines_field(mines_count)
 
     # Отображаем поле снизу вверх (с 4 ряда до 0)
     for i in range(4, -1, -1):
         row_buttons = []
         for j in range(5):
+            cell_index = i * 5 + j
             if (i, j) in opened_cells:
                 # Проверяем, есть ли мина в этой клетке
-                is_mine = False
-                for mine_row, mine_col in data.get('mines_positions', []):
-                    if i == mine_row and j == mine_col:
-                        is_mine = True
-                        break
+                is_mine = mines_positions and cell_index in mines_positions
 
                 if is_mine:
                     row_buttons.append(InlineKeyboardButton(text="💣", callback_data=f"mine_{i}_{j}"))
@@ -2095,9 +2091,24 @@ async def mines_count_handler(message: Message, state: FSMContext):
 
     # Создаем поле мин 5x5
     mines_field = create_mines_field(mines_count)
-    await state.update_data(mines_field=mines_field, opened_cells=[], current_coefficient=1.0, clicks_count=0)
+    
+    # Генерируем позиции мин
+    mines_positions = []
+    import random
+    while len(mines_positions) < mines_count:
+        pos = random.randint(0, 24)  # 25 клеток всего (5x5)
+        if pos not in mines_positions:
+            mines_positions.append(pos)
+    
+    await state.update_data(
+        mines_field=mines_field, 
+        mines_positions=mines_positions,
+        opened_cells=[], 
+        current_coefficient=1.0, 
+        clicks_count=0
+    )
 
-    keyboard = create_mines_inline_keyboard(mines_count, [], MINES_COEFFICIENTS[mines_count][0], 0) # Передаем начальный коэффициент
+    keyboard = create_mines_inline_keyboard(mines_count, [], MINES_COEFFICIENTS[mines_count][0], 0, mines_positions)
 
     # Убираем обычную клавиатуру во время игры
     await message.answer(
@@ -2462,7 +2473,7 @@ async def mines_callback_handler(callback: CallbackQuery, state: FSMContext):
 
                 await state.update_data(opened_cells=opened_cells, clicks_count=clicks_count)
 
-                keyboard = create_mines_inline_keyboard(mines_count, opened_cells, current_coeff, clicks_count)
+                keyboard = create_mines_inline_keyboard(mines_count, opened_cells, current_coeff, clicks_count, mines_positions)
 
                 await callback.message.edit_text(
                     f"💣 <b>Мины</b>\n\n"

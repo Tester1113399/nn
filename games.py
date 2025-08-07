@@ -92,7 +92,7 @@ async def start_handler(message: Message):
     user_id = message.from_user.id
     # Проверяем, есть ли пользователь в базе данных, если нет - регистрируем
     # (предполагается, что эта логика есть в db.py или в другом месте)
-    # register_user_if_not_exists(user_id) # Пример
+    # register_user_if_not_exists(user_id) # Пример)
 
     await message.answer(
         f"👋 <b>Привет, {message.from_user.first_name}!</b>\n\n"
@@ -556,9 +556,9 @@ async def play_bowling_direct(bot: Bot, message, bet_amount: float, choice: str)
         # Отправляем изображение с результатом
         try:
             if win:
-                image_path = "attached_assets/win_image.png"  # Победа
+                image_path = "attached_assets/image_1754570996605.png"  # Победа
             else:
-                image_path = "attached_assets/loss_image.png"  # Поражение
+                image_path = "attached_assets/image_1754570997987.png"  # Поражение
 
             await bot.send_photo(
                 CHANNEL_ID,
@@ -708,9 +708,9 @@ async def play_dice_duel_direct(bot: Bot, message, bet_amount: float, choice: st
         # Отправляем изображение с результатом
         try:
             if win:
-                image_path = "attached_assets/win_image.png"  # Победа
+                image_path = "attached_assets/image_1754570996605.png"  # Победа
             else:
-                image_path = "attached_assets/loss_image.png"  # Поражение
+                image_path = "attached_assets/image_1754570997987.png"  # Поражение
 
             await bot.send_photo(
                 CHANNEL_ID,
@@ -848,9 +848,9 @@ async def play_basketball_direct(bot: Bot, message, bet_amount: float, choice: s
         # Отправляем изображение с результатом
         try:
             if win:
-                image_path = "attached_assets/win_image.png"  # Победа
+                image_path = "attached_assets/image_1754570996605.png"  # Победа
             else:
-                image_path = "attached_assets/loss_image.png"  # Поражение
+                image_path = "attached_assets/image_1754570997987.png"  # Поражение
 
             await bot.send_photo(
                 CHANNEL_ID,
@@ -985,9 +985,9 @@ async def play_dice_higher_direct(bot: Bot, message, bet_amount: float, choice: 
         # Отправляем изображение с результатом
         try:
             if win:
-                image_path = "attached_assets/win_image.png"  # Победа
+                image_path = "attached_assets/image_1754570996605.png"  # Победа
             else:
-                image_path = "attached_assets/loss_image.png"  # Поражение
+                image_path = "attached_assets/image_1754570997987.png"  # Поражение
 
             await bot.send_photo(
                 CHANNEL_ID,
@@ -1124,9 +1124,9 @@ async def play_dice_even_direct(bot: Bot, message, bet_amount: float, choice: st
         # Отправляем изображение с результатом
         try:
             if win:
-                image_path = "attached_assets/win_image.png"  # Победа
+                image_path = "attached_assets/image_1754570996605.png"  # Победа
             else:
-                image_path = "attached_assets/loss_image.png"  # Поражение
+                image_path = "attached_assets/image_1754570997987.png"  # Поражение
 
             await bot.send_photo(
                 CHANNEL_ID,
@@ -1270,9 +1270,9 @@ async def play_triada_direct(bot: Bot, message, bet_amount: float, choice: str):
         # Отправляем изображение с результатом
         try:
             if coeff > 0:
-                image_path = "attached_assets/win_image.png"  # Победа
+                image_path = "attached_assets/image_1754570996605.png"  # Победа
             else:
-                image_path = "attached_assets/loss_image.png"  # Поражение
+                image_path = "attached_assets/image_1754570997987.png"  # Поражение
 
             await bot.send_photo(
                 CHANNEL_ID,
@@ -1416,9 +1416,9 @@ async def play_darts_direct(bot: Bot, message, bet_amount: float, choice: str):
         # Отправляем изображение с результатом
         try:
             if win:
-                image_path = "attached_assets/win_image.png"  # Победа
+                image_path = "attached_assets/image_1754570996605.png"  # Победа
             else:
-                image_path = "attached_assets/loss_image.png"  # Поражение
+                image_path = "attached_assets/image_1754570997987.png"  # Поражение
 
             await bot.send_photo(
                 CHANNEL_ID,
@@ -1574,9 +1574,9 @@ async def play_slots_direct(bot: Bot, message, bet_amount: float, choice: str):
         # Отправляем изображение с результатом
         try:
             if win:
-                image_path = "attached_assets/win_image.png"  # Победа
+                image_path = "attached_assets/image_1754570996605.png"  # Победа
             else:
-                image_path = "attached_assets/loss_image.png"  # Поражение
+                image_path = "attached_assets/image_1754570997987.png"  # Поражение
 
             await bot.send_photo(
                 CHANNEL_ID,
